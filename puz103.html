@@ -47,7 +47,14 @@
         }
     </script>
     <style type="text/css">
-        .gameboard, td, th {
+        /* 30/7/19 Rain Holloway (2020 student) - to eliminate double lines */
+        * {
+            padding: 0;
+            border-collapse: collapse;
+        }
+
+        /* 27/7/19 Nev - for formatting of the table cells */
+        .gameboard {
             width: 40px;
             height: 40px;
             font-size: 30px;
@@ -61,12 +68,13 @@
     </style>
 </head>
 <body onload="initialNumbers()">
-    <!--  notes about modules  -->
+    <!--  the "initialNumbers" above does the initial load  -->
     <form id="input">
-        <h1>v1.02 Binary Puzzle Game (6x6)</h1>
-        <h2>v1.02: This version has the table of input boxes and loads defaults via a repetitive &quot;grunt&quot; method:</h2>
-        <p>Return to <a href="index.html">home</a>::</p>
+        <h1>v1.03 Binary Puzzle Game (6x6)</h1>
+        <h2>v1.03: Box borders cleaned with a couple of lines of CSS from 2020 student Rain Holloway</h2>
+        <p>Return to <a href="index.html">home</a>:</p>
         <p>&nbsp;</p>
+        <!--  set up the board as a table with a textbox in each cell  -->
         <table class="gameboard">
             <tr>
                 <td>
