@@ -1,6 +1,4 @@
-# Binary Puzzle - Teacher site
+# SDD-ASMNT
+This project and all renditions, modifications or prototypes including experimental projects, live fire tests and full version attempts are property of Binoids by ATOMICA INDUSTRIES. Any attempts to rebrand modified code or protypes is NOT ALLOWED. By using this code you agree to NOT REBRAND CODE. You are allowed to modify code however you may like and redistibute code BUT THIS README MUST BE INCLUDED.
 
-This version is 6x6, but enterprising students may want to code for a variable size.
-A puzzle converting a 1D array to 2D. It's fun too!
-
-The index file links to the versions as evolve.
+Group members: Daniel, Finn, Jordan
