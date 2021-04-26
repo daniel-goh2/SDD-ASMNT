@@ -1,0 +1,159 @@
+﻿<!--  v1.02 Added grid and bumbled through the text box formatting -->
+<!--  24/3/21, Nev - added grunt code to fill the text boxes - just to get it working -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>v1.04 Binary Puzzle 6x6</title>
+    <script type='text/javascript'>  
+        //  21/4/21, Nev - 3 x 36 element test arrays
+        var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+        var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+        var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+
+        function loadGrid(G) {                    // load 6x6 test games
+            var Row = 6;                        // declare # of rows
+            var Col = 6;                        // declare # of columns
+            var Grid = [];                      // declare Grid as an array
+
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('A' + (i + 1)).value = G[i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('B' + (i + 1)).value = G[Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('C' + (i + 1)).value = G[2*Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('D' + (i + 1)).value = G[3 * Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('E' + (i + 1)).value = G[4 * Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('F' + (i + 1)).value = G[5 * Col + i];  // loop 1st 6 elements for Row A
+            }
+
+        }
+
+    </script>
+    <style type="text/css">
+        /* 30/7/19 Rain Holloway (2020 student) - to eliminate double lines */
+        * {
+            padding: 0;
+            border-collapse: collapse;
+        }
+
+        /* 27/7/19 Nev - for formatting of the table cells */
+        .gameboard {
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            color: #0B1AB8;
+            vertical-align: middle;
+            text-align: center;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #ED2428;
+        }
+    </style>
+</head>
+<body onload="loadGrid(G1)">
+    <!--  21/4/21 Now loading the variable "G1" which is a 36 element array  -->
+    <form id="input">
+        <h1>v1.04 Binary Puzzle Game (6x6)</h1>
+        <h2>v1.04: Load from 36 element grid rather than &quot;grunt&quot; code</h2>
+        <p>Return to <a href="index.html">home</a>:</p>
+        <p>&nbsp;</p>
+        <!--  set up the board as a table with a textbox in each cell  -->
+        <table class="gameboard">
+            <tr>
+                <td>
+                    <input id="A1" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="A2" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="A3" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="A4" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="A5" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="A6" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="B1" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B2" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B3" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B4" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B5" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B6" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="C1" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="C2" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="C3" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="C4" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="C5" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="C6" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="D1" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="D2" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="D3" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="D4" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="D5" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="D6" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="E1" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="E2" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="E3" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="E4" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="E5" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="E6" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="F1" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="F2" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="F3" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="F4" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="F5" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="F6" type="text" class="gameboard" /></td>
+            </tr>
+        </table>
+        <br />
+    </form>
+</body>
+</html>
