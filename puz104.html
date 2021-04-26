@@ -4,47 +4,39 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>v1.03 Binary Puzzle 6x6</title>
+    <title>v1.04 Binary Puzzle 6x6</title>
     <script type='text/javascript'>  
-        //  24/7/19 - 6x6 table of text boxes with some initial test values
-        function initialNumbers() {                    // sets the initial problem
-            document.getElementById('A1').value = 1;   // Hard code
-            document.getElementById('A2').value = "";  // Hard code
-            document.getElementById('A3').value = 0;
-            document.getElementById('A4').value = null; //not sure yet whether to use nulls or empty strings
-            document.getElementById('A5').value = 0;
-            document.getElementById('A6').value = 0;
-            document.getElementById('B1').value = "";
-            document.getElementById('B2').value = 1;
-            document.getElementById('B3').value = "";
-            document.getElementById('B4').value = 0;
-            document.getElementById('B5').value = 0;
-            document.getElementById('B6').value = "";
-            document.getElementById('C1').value = "";
-            document.getElementById('C2').value = "";
-            document.getElementById('C3').value = "";
-            document.getElementById('C4').value = "";
-            document.getElementById('C5').value = "";
-            document.getElementById('C6').value = 0;
-            document.getElementById('D1').value = 0;
-            document.getElementById('D2').value = "";
-            document.getElementById('D3').value = "";
-            document.getElementById('D4').value = 1;
-            document.getElementById('D5').value = "";
-            document.getElementById('D6').value = "";
-            document.getElementById('E1').value = 1;
-            document.getElementById('E2').value = 0;
-            document.getElementById('E3').value = "";
-            document.getElementById('E4').value = 1;
-            document.getElementById('E5').value = 1;
-            document.getElementById('E6').value = "";
-            document.getElementById('F1').value = "";
-            document.getElementById('F2').value = 0;
-            document.getElementById('F3').value = "";
-            document.getElementById('F4').value = "";
-            document.getElementById('F5').value = 1;
-            document.getElementById('F6').value = 1;
+        //  21/4/21, Nev - 3 x 36 element test arrays
+        var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+        var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+        var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+
+        function loadGrid(G) {                    // load 6x6 test games
+            var Row = 6;                        // declare # of rows
+            var Col = 6;                        // declare # of columns
+            var Grid = [];                      // declare Grid as an array
+
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('A' + (i + 1)).value = G[i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('B' + (i + 1)).value = G[Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('C' + (i + 1)).value = G[2*Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('D' + (i + 1)).value = G[3 * Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('E' + (i + 1)).value = G[4 * Col + i];  // loop 1st 6 elements for Row A
+            }
+            for (let i = 0; i < Row; i++) {
+                document.getElementById('F' + (i + 1)).value = G[5 * Col + i];  // loop 1st 6 elements for Row A
+            }
+
         }
+
     </script>
     <style type="text/css">
         /* 30/7/19 Rain Holloway (2020 student) - to eliminate double lines */
@@ -67,11 +59,11 @@
         }
     </style>
 </head>
-<body onload="initialNumbers()">
-    <!--  the "initialNumbers" above does the initial load  -->
+<body onload="loadGrid(G1)">
+    <!--  21/4/21 Now loading the variable "G1" which is a 36 element array  -->
     <form id="input">
-        <h1>v1.03 Binary Puzzle Game (6x6)</h1>
-        <h2>v1.03: Box borders cleaned with a couple of lines of CSS from 2020 student Rain Holloway</h2>
+        <h1>v1.04 Binary Puzzle Game (6x6)</h1>
+        <h2>v1.04: Load from 36 element grid rather than &quot;grunt&quot; code</h2>
         <p>Return to <a href="index.html">home</a>:</p>
         <p>&nbsp;</p>
         <!--  set up the board as a table with a textbox in each cell  -->
