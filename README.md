@@ -1,6 +1,3 @@
-# Binary Puzzle - Teacher site
+# Binary Puzzle
 
-This version is 6x6, but enterprising students may want to code for a variable size.
-A puzzle converting a 1D array to 2D. It's fun too!
-
-The index file links to the versions as evolve.
+A simple sudoku-like puzzle, that uses 1's and 0's instead of number 1 - 9. It also follows a few different rules that can be found in the wiki.
