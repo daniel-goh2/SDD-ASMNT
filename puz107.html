@@ -24,7 +24,7 @@
         }
     </style>
     <meta charset="utf-8">
-    <title>v1.06 Binary Puzzle 6x6</title>
+    <title>v1.07 Binary Puzzle 6x6</title>
     <script type='text/javascript'>  
         //  21/4/21, Nev - 3 x 36 element test arrays
         var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
@@ -36,7 +36,16 @@
             var Row = 6;                        // declare # of rows
             var Col = 6;                        // declare # of columns
             var Grid = [];                      // declare Grid as an array
-
+            var GridCol = [];
+            for (let j = 0; j < Row; j++) { //Row loop - like the "y" coordinates
+                for (let i = 0; i < Col; i++) { //Column loop - like the "x" coordinates
+                    GridCol.push(G[j * Col + i]); // load the column elements into this temporary array
+                }
+                Grid.push(GridCol); // push a column array for each row
+                GridCol = []; // clear this array ready for the next row
+            }
+            document.getElementById('arrayView2D').value = Grid;
+            document.getElementById('arrayViewCell').value = Grid[4][3]; //Row 5, Column 4
             for (let j = 0; j < Row; j++) { //Row Loop (y)
                 for (let i = 0; i < Col; i++) { //Col Loop (x)
                     document.getElementById('B' + (i + 1) + (j + 1)).value = G[j * Col + i];  //Nested Loop     // 0*Col
@@ -49,8 +58,8 @@
 <body onload="loadGrid(G4)">
     <!--  21/4/21 Now loading the variable "G1" which is a 36 element array  -->
     <form id="input">
-        <h1>v1.06 Binary Puzzle Game (6x6)</h1>
-        <h2>v1.06: Re-name the gameboard cells so that columns and rows are numbers. Edit the 6 loops.</h2>
+        <h1>v1.07 Binary Puzzle Game (6x6)</h1>
+        <h2>v1.07: Re-name the gameboard cells so that columns and rows are numbers. Edit the 6 loops.</h2>
         <p>Return to <a href="index.html">home</a>:</p>
         <p>&nbsp;</p>
         <!--  set up the board as a table with a textbox in each cell  -->
@@ -141,6 +150,8 @@
             </tr>
         </table>
         <br />
-    </form>
+        2D view of Array<br />
+        <textarea id="arrayView2D" cols="30" name="S1" rows="3"></textarea><br />
+        <textarea id="arrayViewCell" cols="30" name="S2" rows="3"></textarea></form>
 </body>
 </html>
