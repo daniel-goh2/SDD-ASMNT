@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>v1.07 Binary Puzzle 6x6</title>
+    <title>v1.08 Binary Puzzle 6x6</title>
         <style type="text/css">
         /* 30/7/19 Rain Holloway (2020 student) - to eliminate double lines */
         * {
@@ -26,11 +26,22 @@
         }
     </style>
     <script type='text/javascript'>  
-        //  21/4/21, Nev - 3 x 36 element test arrays
-        var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
-        var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-        var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-        var G4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
+        //  30/4/21, Nev - 15 x 36 element test arrays
+        // sample test arrays. G1 is given in the question. GT is for testing - all arrays in EXCEL spreadsheet: 
+        var G01 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+        var G02 = [null, null, null, null, null, null, null, 1, null, null, null, 1, null, 1, null, 1, null, null, null, null, 0, null, null, 1, null, 1, null, null, null, null, null, null, null, 0, 0, null];
+        var G03 = [null, 1, null, null, null, null, null, null, null, 0, null, 0, null, 0, null, 0, null, null, 1, null, null, null, 1, null, null, null, null, null, 0, null, 0, null, null, null, null, null];
+        var G04 = [0, null, null, 1, null, null, null, 0, null, null, null, 1, null, null, 1, 1, null, null, null, null, null, null, 1, 1, null, null, null, null, null, 0, 0, null, 1, null, 1, null];
+        var G05 = [null, null, null, null, null, null, null, 1, null, 1, null, 1, null, null, 0, 0, null, null, 0, null, null, null, null, null, null, null, null, null, 1, 1, null, null, 0, null, 0, null];
+        var G06 = [null, null, null, null, null, 0, null, 1, null, null, 1, null, null, null, null, 0, null, null, null, null, 1, null, null, null, null, null, 1, null, null, null, null, 0, null, null, 1, null];
+        var G07 = [1, null, 1, null, null, 1, null, null, null, 1, null, null, 0, null, null, 1, 0, null, null, null, 1, null, null, null, null, 1, null, null, null, null, 1, null, null, 1, 1, null];
+        var G08 = [1, 1, null, null, null, null, 1, null, null, 1, null, null, null, null, null, null, 0, null, 0, null, 0, null, null, null, null, null, null, null, null, null, null, null, 0, null, 0, null];
+        var G09 = [null, null, 0, 0, null, 0, null, null, null, null, null, null, null, 1, 1, null, null, null, null, null, null, null, 0, 0, null, null, 1, null, 0, null, null, null, null, null, null, null];
+        var G10 = [null, null, null, null, null, null, null, 1, null, null, null, null, null, null, 0, null, 1, 1, null, null, 0, null, null, null, null, 0, null, null, 1, null, null, null, null, null, null, null];
+        var G11 = [null, 1, null, 1, null, 1, null, null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 1, null, 0, null, 1, 0, null, null, null, 1, null, null, null, null];
+        var G12 = [0, null, null, null, null, null, null, 1, 1, null, null, null, null, null, 1, null, null, null, null, null, null, 0, null, null, 0, null, null, 1, null, null, null, null, null, null, null, null];
+        var G13 = [null, null, null, 1, null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0, null, null, null, null, 1, null, 1, null, null, null, null, null, null, 0, null, 0, null, 0];
+        var GT = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
 
         function loadGrid(G) {                    // load 6x6 test games
             var Row = 6;                        // declare # of rows
@@ -62,15 +73,73 @@
                 }
             }
         }
+        function BinaryPuzzleSolver() {  //Code the top level module here
+            window.alert('BinaryPuzzleSolver has not been coded yet');
+        }
+        function SolvePuzzle() { //See structure chart for what goes here
+            window.alert('SolvePuzzle has not been coded yet');
+        }
+        function SolveNumberPairs() { // call row and column
+            window.alert('SolveNumberPairs has not been coded yet');
+        }
+        function SolveRowPairs() { // See pseudocode in Q22f for the row part here
+            window.alert('SolveRowPairs has not been coded yet');
+        }
+        function SolveColPairs() { // Similar to column pairs
+            window.alert('SolveColPairs has not been coded yet');
+        }
+        function SolveNumberTrios() {
+            window.alert('SolveNumberTrios has not been coded yet');
+        }
+        function CompleteRowsCols() {
+            window.alert('CompleteRowsCols has not been coded yet');
+        }
 
     </script>
 </head>
-<body onload="loadGrid(G4)">
+<body onload="loadGrid(GT)">
     <form id="input">
         <h1>Binary Puzzle Game (6x6)</h1>
-        <h2>v1.07: Push temporary row arrays to a 2D array called &quot;Grid&quot;. Added text boxes to view Grid in 1D and 2D form, as well as calling 1 test element.</h2>
+        <h2>v1.08: Add a dropdown to select a game and buttons to test the structure chart modules.</h2>
         <p>Return to <a href="index.html">home</a>:</p>
-        <p>&nbsp;</p>
+        Choose a game to solve:<br />
+        
+        <select id="cboPuzNo" onchange="loadGrid(eval(value))">
+                    <!--<select id="cboPuzNo" onchange="LoadGrid(eval(value))">-->
+            <!--<select id="cboPuzNo">-->
+            <option value="GT">Test 1-36</option>
+            <option value='G01'>Example in Q</option>
+            <option value="G02">Game 2</option>
+            <option value="G03">Game 3</option>
+            <option value="G04">Game 4</option>
+            <option value="G05">Game 5</option>
+            <option value="G06">Game 6</option>
+            <option value="G07">Game 7</option>
+            <option value="G08">Game 8</option>
+            <option value="G09">Game 9</option>
+            <option value="G10">Game 10</option>
+            <option value="G11">Game 11</option>
+            <option value="G12">Game 12</option>
+            <option value="G13">Game 13</option>
+        </select>
+
+        <!--  3/8/19 Board cell labels have "B" for board, then column digit, then row digit"  -->
+        <br />
+        The buttons here form a test bed similar to the structure chart.
+        <br />
+        Later, we can improve the screen design.<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        <input type="button" value="--- Solve repeat ---" onclick="BinaryPuzzleSolver()" />&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
+        <input type="button" value="--- Solve once ---" onclick="SolvePuzzle()" />&nbsp;&nbsp;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input onclick="SolveNumberPairs()" type="button" value="Pairs" />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                <input type="button" value="Trios" onclick="SolveNumberTrios()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Complete" onclick="CompleteRowsCols()" />
+        <br />
+&nbsp;<input type="button" value="RowPairs" onclick="SolveRowPairs()" />&nbsp;
+        <input type="button" value="ColPairs" onclick="SolveColPairs()" />&nbsp;
+<br />
+        
         <!--  set up the board as a table with a textbox in each cell  -->
         <table class="gameboard">
             <tr>

@@ -3,6 +3,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>v1.06 Binary Puzzle 6x6</title>
+    <script type='text/javascript'>  
+        //  21/4/21, Nev - 3 x 36 element test arrays
+        var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+        var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+        var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+        var G4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
+
+        function loadGrid(G) {                    // load 6x6 test games
+            var Row = 6;                        // declare # of rows
+            var Col = 6;                        // declare # of columns
+            var Grid = [];                      // declare Grid as an array
+
+            //26/4/21, Nev - created 2 nested loops to eliminate the 6 row loops used previously
+            for (let j = 0; j < Col; j++) {
+                for (let i = 0; i < Row; i++) {
+                    document.getElementById('B' + (i + 1) + (j+1)).value = G[j*Col+i];            // 0*Col
+                }
+            }
+            //for (let i = 0; i < Row; i++) {
+            //    document.getElementById('B' + (i + 1) + '2').value = G[Col + i];      // 1*Col
+            //}
+            //for (let i = 0; i < Row; i++) {
+            //    document.getElementById('B' + (i + 1) + '3').value = G[2 * Col + i];  // 2*Col
+            //}
+            //for (let i = 0; i < Row; i++) {
+            //    document.getElementById('B' + (i + 1) + '4').value = G[3 * Col + i];  // 3*Col
+            //}
+            //for (let i = 0; i < Row; i++) {
+            //    document.getElementById('B' + (i + 1) + '5').value = G[4 * Col + i];  // 4*Col
+            //}
+            //for (let i = 0; i < Row; i++) {
+            //    document.getElementById('B' + (i + 1) + '6').value = G[5 * Col + i];  // 5*Col
+            //}
+
+        }
+
+    </script>
     <style type="text/css">
         /* 30/7/19 Rain Holloway (2020 student) - to eliminate double lines */
         * {
@@ -23,34 +62,11 @@
             border: 1px solid #ED2428;
         }
     </style>
-    <meta charset="utf-8">
-    <title>v1.06 Binary Puzzle 6x6</title>
-    <script type='text/javascript'>  
-        //  21/4/21, Nev - 3 x 36 element test arrays
-        var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
-        var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-        var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-        var G4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
-
-        function loadGrid(G) {                    // load 6x6 test games
-            var Row = 6;                        // declare # of rows
-            var Col = 6;                        // declare # of columns
-            var Grid = [];                      // declare Grid as an array
-
-            for (let j = 0; j < Row; j++) { //Row Loop (y)
-                for (let i = 0; i < Col; i++) { //Col Loop (x)
-                    document.getElementById('B' + (i + 1) + (j + 1)).value = G[j * Col + i];  //Nested Loop     // 0*Col
-                }
-            }
-        }
-
-    </script>
 </head>
 <body onload="loadGrid(G4)">
-    <!--  21/4/21 Now loading the variable "G1" which is a 36 element array  -->
     <form id="input">
-        <h1>v1.06 Binary Puzzle Game (6x6)</h1>
-        <h2>v1.06: Re-name the gameboard cells so that columns and rows are numbers. Edit the 6 loops.</h2>
+        <h1>Binary Puzzle Game (6x6)</h1>
+        <h2>v1.06: Completed 2 nested loops to loop the columns, then the rows from a 1D array.</h2>
         <p>Return to <a href="index.html">home</a>:</p>
         <p>&nbsp;</p>
         <!--  set up the board as a table with a textbox in each cell  -->
