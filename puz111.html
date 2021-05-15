@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>V11 Binary Puzzle 6x6</title>
+    <style type="text/css">
+        /* CSS in the same file initially because it's minimal */
+        /* 30/7/19 Rain Holloway - to eliminate double lines */
+        * {
+            padding: 0;
+            border-collapse: collapse;
+        }
+        /* 27/7/19 Nev - for formatting of the table cells */
+        .gameboard {
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            color: #0B1AB8;
+            vertical-align: middle;
+            text-align: center;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #ED2428;
+        }
+    </style>
+    <script type='text/javascript'>  
+        // sample test arrays. G1 is given in the question. GT is for testing - all arrays in EXCEL spreadsheet: 
+        // https://schoolsnsw.sharepoint.com/sites/SDD/Notes_SDD/CodeSamples/32-SampleGames-1pg-AsInV8code.xlsx
+        // because this is laborious to write, you can copy it from the OneNote page:
+        var G01 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+        var G02 = [null, null, null, null, null, null, null, 1, null, null, null, 1, null, 1, null, 1, null, null, null, null, 0, null, null, 1, null, 1, null, null, null, null, null, null, null, 0, 0, null];
+        var G03 = [null, 1, null, null, null, null, null, null, null, 0, null, 0, null, 0, null, 0, null, null, 1, null, null, null, 1, null, null, null, null, null, 0, null, 0, null, null, null, null, null]
+        var G04 = [0, null, null, 1, null, null, null, 0, null, null, null, 1, null, null, 1, 1, null, null, null, null, null, null, 1, 1, null, null, null, null, null, 0, 0, null, 1, null, 1, null]
+        var G05 = [null, null, null, null, null, null, null, 1, null, 1, null, 1, null, null, 0, 0, null, null, 0, null, null, null, null, null, null, null, null, null, 1, 1, null, null, 0, null, 0, null]
+        var G06 = [null, null, null, null, null, 0, null, 1, null, null, 1, null, null, null, null, 0, null, null, null, null, 1, null, null, null, null, null, 1, null, null, null, null, 0, null, null, 1, null]
+        var G07 = [1, null, 1, null, null, 1, null, null, null, 1, null, null, 0, null, null, 1, 0, null, null, null, 1, null, null, null, null, 1, null, null, null, null, 1, null, null, 1, 1, null]
+        var G08 = [1, 1, null, null, null, null, 1, null, null, 1, null, null, null, null, null, null, 0, null, 0, null, 0, null, null, null, null, null, null, null, null, null, null, null, 0, null, 0, null]
+        var G09 = [null, null, 0, 0, null, 0, null, null, null, null, null, null, null, 1, 1, null, null, null, null, null, null, null, 0, 0, null, null, 1, null, 0, null, null, null, null, null, null, null]
+        var G10 = [null, null, null, null, null, null, null, 1, null, null, null, null, null, null, 0, null, 1, 1, null, null, 0, null, null, null, null, 0, null, null, 1, null, null, null, null, null, null, null]
+        var G11 = [null, 1, null, 1, null, 1, null, null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 1, null, 0, null, 1, 0, null, null, null, 1, null, null, null, null]
+        var G12 = [0, null, null, null, null, null, null, 1, 1, null, null, null, null, null, 1, null, null, null, null, null, null, 0, null, null, 0, null, null, 1, null, null, null, null, null, null, null, null]
+        var G13 = [null, null, null, 1, null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0, null, null, null, null, 1, null, 1, null, null, null, null, null, null, 0, null, 0, null, 0]
+        var GT = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
+        var Grid = []   //create Global Variable
+        //  24/7/19 - 6x6 table of text boxes with some initial test values
+
+        var Row = 6;    //set the number of rows
+        var Col = 6;    //set the number of columns
+        Grid = [];
+
+        function LoadGrid(G) {
+
+            var GridCol = [];
+            
+            //Load a 1D array from above into a 2D array called "Grid"
+            for (let i = 0; i < Row; i++) { //Row loop - like the "y" coordinates
+                for (let j = 0; j < Col; j++) { //Column loop - like the "x" coordinates
+                    GridCol.push(G[j * Col + i]); // load the column elements into this temporary array
+                }
+                Grid.push(GridCol); // push a column array for each row
+                GridCol = []; // clear this array ready for the next row
+            }
+            document.getElementById('arrayView2D').value = Grid; //shows the full array but not as an array or 6 arrays
+            document.getElementById('arrayViewCell').value = Grid[4][3]; //Row then Column
+            //display the array in the boxes on the HTML page
+            for (let i = 0; i < Row; i++) { //Row loop - like the "y" coordinates
+                for (let j = 0; j < Col; j++) { //Column loop - like the "x" coordinates
+                    document.getElementById('B' + (i + 1) + (j + 1)).value = G[j * Col + i]; // Nested loops
+                }
+            }
+        }
+        function BinaryPuzzleSolver() {  //Code the top level module here
+            //add loop for testing to avoid infinite false
+            let i = 1;          //temporary variable until true false working
+            Solved = false;     //initial setting
+            while (Solved == false && i < 3) {
+                Solved = SolvePuzzle(Grid);
+                window.alert('Main "BinaryPuzzleSolver" - Solved = ' + Solved + '. Loop # ' + i + '.');
+                i++;
+            }
+        }
+        function SolvePuzzle(G2D) { //See structure chart for what goes here
+            if (G2D[0][1] == 1) {   //row 1, col 2
+                window.alert('Sub "SolvePuzzle" TEST MSG ONLY - 1 in row 1 col 2 - "solved". ');
+                return true;
+            }
+            window.alert('Sub "SolvePuzzle" TEST MSG ONLY - "NOT solved yet"!');
+            return false;
+        }
+        function SolveNumberPairs() { // call row and column
+            window.alert('SolveNumberPairs has not been coded yet');
+        }
+        function SolveRowPairs() { // See pseudocode in Q22f for the row part here
+            var GridSize = 6
+            for (let Row = 0; Row < GridSize - 1; Row++) {
+                for (let Col = 0; Col < GridSize - 1; Col++) {
+                    if (Grid[Row][Col] !== null && Grid[Row][Col] == Grid[Row][Col + 1]) {
+                        if (Col > 0) {
+                            Grid[Row][Col - 1] = (1 - Grid[Row][Col]);
+                        }
+                        if (Col < GridSize - 2) {
+                            Grid[Row][Col + 2] = (1 - Grid[Row][Col]);
+                        }
+                    }
+                }
+            }
+            document.getElementById('arrayView2D').value = Grid;
+            DisplayGrid(Grid);
+        }
+        function SolveColPairs() { // Similar to column pairs
+            window.alert('SolveColPairs has not been coded yet');
+        }
+        function SolveNumberTrios() {
+            window.alert('SolveNumberTrios has not been coded yet');
+        }
+        function CompleteRowsCols() {
+            window.alert('CompleteRowsCols has not been coded yet');
+        }
+        function DisplayGrid(G2D) {
+            for (let j = 0; j < Col; j++) {
+                for (let i = 0; i < Row; i++) {
+                    document.getElementById('B' + (i + 1) + (j + 1)).value = G2D[j][i];
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="LoadGrid(G01)">
+    <!--Parameter for initial load can be changed manually-->
+    <!--3/8/19 "LoadGrid()" now changed to 2 nested loops -->
+    <form id="input">
+        <h1>6x6 Binary Puzzle Game</h1>
+        <h2>V11: Created solveRowPairs function and DisplayGrid Function</h2>
+        <h3>&nbsp;</h3>
+        <p>Return to <a href="index.html">home</a>:</p>
+        LOAD a grid:
+        <select id="cboPuzNo" onchange="LoadGrid(eval(value))">
+            <!--<select id="cboPuzNo">-->
+            <option value="G01">Example in Q</option>
+            <option value="G02">Game 2</option>
+            <option value="G03">Game 3</option>
+            <option value="G04">Game 4</option>
+            <option value="G05">Game 5</option>
+            <option value="G06">Game 6</option>
+            <option value="G07">Game 7</option>
+            <option value="G08">Game 8</option>
+            <option value="G09">Game 9</option>
+            <option value="G10">Game 10</option>
+            <option value="G11">Game 11</option>
+            <option value="G12">Game 12</option>
+            <option value="G13">Game 13</option>
+            <option value="GT">Test 1-36</option>
+        </select>
+        <!--<input type="button" value="Load" onclick="LoadGrid(GT)" />&nbsp;&nbsp;-->
+        <br />
+        <input type="button" value="--- Solve repeat ---" onclick="BinaryPuzzleSolver()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+        <input type="button" value="--- Solve once ---" onclick="SolvePuzzle(Grid)" />&nbsp;&nbsp;<br />
+        <input type="button" value="Pairs" onclick="SolveNumberPairs()" />&nbsp;
+        <input type="button" value="RowPairs" onclick="SolveRowPairs()" />&nbsp;
+        <input type="button" value="ColPairs" onclick="SolveColPairs()" />&nbsp;
+        <input type="button" value="Trios" onclick="SolveNumberTrios()" />&nbsp;
+        <input type="button" value="Complete" onclick="CompleteRowsCols()" /><br />
+        <!--  3/8/19 Board cell labels have "B" for board, then column digit, then row digit"  -->
+        <table class="gameboard">
+            <tr>
+                <td>
+                    <input id="B11" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B21" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B31" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B41" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B51" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B61" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="B12" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B22" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B32" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B42" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B52" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B62" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="B13" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B23" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B33" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B43" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B53" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B63" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="B14" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B24" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B34" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B44" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B54" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B64" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="B15" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B25" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B35" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B45" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B55" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B65" type="text" class="gameboard" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="B16" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B26" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B36" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B46" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B56" type="text" class="gameboard" /></td>
+                <td>
+                    <input id="B66" type="text" class="gameboard" /></td>
+            </tr>
+        </table>
+        <br />
+        View of the 2D array:<br />
+        <textarea id="arrayView2D" cols="30" rows="5"></textarea><br />
+        <br />
+        View of 1 element by Row and Column reference.<br />
+        (hard coded as Grid[4][3]; //Row then Column<br />
+        which is row 5 and column 4):<br />
+        <textarea id="arrayViewCell" cols="30" rows="2"></textarea>
+        <br />
+        <br />
+        <br />
+    </form>
+</body>
+</html>
